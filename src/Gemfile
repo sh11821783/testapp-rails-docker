@@ -54,3 +54,13 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# ログイン機能やユーザー登録機能をとても簡単に実装することができるgem。
+gem 'devise', '~> 4.9.0'
+# いい感じに画面の見栄えを整えてくれるgem。
+gem 'bootstrap', '~> 4.4.1'
+# 非同期通信の機能実装の際はかかせないgem。
+# bootstrapのgemは、jQueryに依存しているためbootstrapとセットで入れる。
+gem 'jquery-rails'
+# gem 'net-http'をインストールすることで、stdlibのnet/httpを回避し、より安定した開発環境を構築できます。
+gem 'net-http'

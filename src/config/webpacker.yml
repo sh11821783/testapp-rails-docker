@@ -1,23 +1,29 @@
 # Note: You must restart bin/webpack-dev-server for changes to take effect
+# 注意: 変更を反映するためには bin/webpack-dev-server を再起動する必要があります
 
+# 全ての環境で共通の設定
 default: &default
+  # JavaScriptファイルのソースコードが含まれるディレクトリのパス
   source_path: app/javascript
+  # Webpackエントリーポイントのディレクトリのパス
   source_entry_path: packs
+  # 公開されるファイルのルートディレクトリのパス
   public_root_path: public
+  # Webpackが生成したファイルの出力先ディレクトリのパス
   public_output_path: packs
+  # Webpackのキャッシュファイルの保存先ディレクトリのパス
   cache_path: tmp/cache/webpacker
-  webpack_compile_output: true
 
-  # Additional paths webpack should lookup modules
-  # ['app/assets', 'engine/foo/app/assets']
+  # webpackがモジュールを検索する追加のパス
   additional_paths: []
 
-  # Reload manifest.json on all requests so we reload latest compiled packs
+  # 全てのリクエストでmanifest.jsonを再読み込みして最新のコンパイル済みパックを再読み込みする
   cache_manifest: false
 
-  # Extract and emit a css file
+  # CSSファイルを抽出して生成するかどうか
   extract_css: false
 
+  # 静的アセットの拡張子
   static_assets_extensions:
     - .jpg
     - .jpeg
@@ -32,6 +38,7 @@ default: &default
     - .woff
     - .woff2
 
+  # 拡張子のリスト
   extensions:
     - .mjs
     - .js
@@ -47,18 +54,17 @@ default: &default
     - .jpeg
     - .jpg
 
+# 開発環境の設定
 development:
   <<: *default
   compile: true
 
-  # Reference: https://webpack.js.org/configuration/dev-server/
   dev_server:
     https: false
     host: localhost
     port: 3035
     public: localhost:3035
     hmr: false
-    # Inline should be set to true if using HMR
     inline: true
     overlay: true
     compress: true
@@ -71,22 +77,15 @@ development:
     watch_options:
       ignored: '**/node_modules/**'
 
-
+# テスト環境の設定
 test:
   <<: *default
   compile: true
-
-  # Compile test packs to a separate directory
   public_output_path: packs-test
 
+# 本番環境の設定
 production:
   <<: *default
-
-  # Production depends on precompilation of packs prior to booting for performance.
   compile: false
-
-  # Extract and emit a css file
   extract_css: true
-
-  # Cache manifest.json for performance
   cache_manifest: true

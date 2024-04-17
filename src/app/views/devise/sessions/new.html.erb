@@ -1,0 +1,40 @@
+<!-- コンテンツ全体を保持するためのコンテナー部分の開始 -->
+<div class="container">
+  <!-- コンテナー内に、行を作成 -->
+  <div class="row">
+    <!-- 行内に、6単位で幅を占め、水平方向に中央揃えされた列を作成 -->
+    <div class="col-6 mx-auto">
+      <!-- ログインフォーム -->
+      <h2>Log in</h2>
+        <!-- リソースのログイン情報を送信するフォーム -->
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <!-- メールアドレスフィールド -->
+          <div class="form-group">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "form-control" %>
+          </div>
+
+          <!-- パスワードフィールド -->
+          <div class="form-group">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
+          </div>
+
+          <!-- "Remember me" オプションの表示 -->
+          <% if devise_mapping.rememberable? %>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end %>
+
+          <!-- ログインボタン -->
+          <div class="actions">
+            <%= f.submit "Log in", class: "btn btn-primary" %>
+          </div>
+        <% end %>
+      <!-- Deviseの共有リンクの表示 -->
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

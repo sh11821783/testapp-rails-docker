@@ -10,17 +10,17 @@ src/.bundle
 # Ignore all logfiles and tempfiles.
 src/log/*
 src/tmp/*
-src!/log/.keep
-src!/tmp/.keep
+!src/log/.keep
+!src/tmp/.keep
 
 # Ignore pidfiles, but keep the directory.
 src/tmp/pids/*
-src!/tmp/pids/
-src!/tmp/pids/.keep
+!src/tmp/pids/
+!src/tmp/pids/.keep
 
 # Ignore uploaded files in development.
 src/storage/*
-src!/storage/.keep
+!src/storage/.keep
 
 src/public/assets
 src/.byebug_history
