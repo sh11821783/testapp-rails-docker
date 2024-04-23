@@ -11,6 +11,67 @@
   </head>
 
   <body>
+    <!-- ナビゲーションバーを定義 -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <!-- ロゴを表示し、ホームページへのリンクを提供 -->
+      <%= link_to 'Article submission system', root_path, class: "navbar-brand" %>
+      <!-- ナビゲーションの切り替えを行うボタン -->
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber" aria-expanded="false" aria-label="ナビゲーションの切替">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <!-- 「ユーザーがログインしている場合」という意味 -->
+       <!-- devise実装後、デフォルトで使用できる -->
+      <% if user_signed_in? %>
+        <!-- ナビゲーションメニュー -->
+        <div class="collapse navbar-collapse" id="Navber">
+          <!-- メニューアイテム -->
+          <ul class="navbar-nav mr-auto">
+            <!-- マイページへのリンク -->
+            <li class="nav-item">
+              <%= link_to 'マイページ', user_path, class: "nav-link" %>
+            </li>
+            <!-- 新規投稿へのリンク -->
+            <li class="nav-item">
+                <%= link_to '新規投稿', "#", class: "nav-link" %>
+            </li>
+            <!-- 投稿一覧へのリンク -->
+            <li class="nav-item">
+                <%= link_to '投稿一覧', "#", class: "nav-link" %>
+            </li>
+            <!-- ログアウトへのリンク -->
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% else %>
+        <!-- ユーザーがログインしていない場合 -->
+        <div class="collapse navbar-collapse" id="Navber">
+          <!-- メニューアイテム -->
+          <ul class="navbar-nav mr-auto">
+            <!-- ログインページへのリンク -->
+            <li class="nav-item">
+              <%= link_to 'ログイン', new_user_session_path, class: "nav-link" %>
+            </li>
+            <!-- 新規登録ページへのリンク -->
+            <li class="nav-item">
+              <%= link_to '新規登録', new_user_registration_path, class: "nav-link" %>
+            </li>
+          </ul>
+        </div>
+      <% end %>
+    </nav>
+
+    <% if flash[:notice]%>
+      <!-- 成功時のフラッシュメッセージを表示します -->
+      <div class="alert alert-primary" role="alert"><strong><%= notice %></strong></div>
+    <% end %>
+
+    <% if flash[:alert]%>
+      <!-- エラー時のフラッシュメッセージを表示します -->
+      <div class="alert alert-danger" role="alert"><strong><%= alert %></strong></div>
+    <% end %>
+
     <%= yield %>
   </body>
 </html>

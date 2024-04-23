@@ -23,6 +23,11 @@ services:
     # ビルドの指定をしています。
     build: .
     # サーバーを起動する際のコマンドを指定しています。
+    # /bin/sh -c を使用してシェルコマンドを実行しています。
+    # rm -f tmp/pids/server.pid は、一時的なプロセスIDファイルを削除します。
+    # bundle exec rails s -p 3000 -b '0.0.0.0' は、Railsサーバーを起動するコマンドです。
+    # -p 3000 は、ポート番号を3000に設定します。
+    # -b '0.0.0.0' は、サーバーを全てのネットワークインターフェースにバインドします。
     command: /bin/sh -c "rm -f tmp/pids/server.pid && bundle exec rails s -p 3000 -b '0.0.0.0'"
     # ローカルの状況を仮想環境の指定ディレクトリにマウント（接続）しています。
     volumes:
@@ -37,10 +42,12 @@ services:
       - db
 
   # 「webpacker」というサービスでは、RailsのWebpackerを使用しています。
+  # 開発しやすい様に、複数のアセットファイルを作り直してくれます。
+  # アセットとは、JavaScriptファイル、CSSファイル、画像ファイル、フォントファイルなどの事。
   webpacker:
     # ビルドの指定をしています。
     build: .
-    # コマンドの指定をしています。
+    # コマンドの指定をしています
     command: bundle exec rails webpacker:compile
     # ローカルの状況を仮想環境の指定ディレクトリにマウント（接続）しています。
     volumes:
