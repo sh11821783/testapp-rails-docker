@@ -1,0 +1,42 @@
+<% if @user.errors.any? %>
+  <!-- エラーメッセージを表示するアラート -->
+  <div class="alert alert-danger" role="alert">
+    <!-- エラーの数を表示 -->
+    <h4 class="alert-heading"><%= pluralize(@user.errors.count, "error") %></h4>
+    <!-- エラーメッセージの説明 -->
+    <p><%= pluralize(@user.errors.count, "error") %> prohibited this object from being saved: not successfully</p>
+    <hr>
+    <p class="mb-0">
+      <!-- 全てのエラーメッセージを繰り返し表示 -->
+      <% @user.errors.full_messages.each do |message| %>
+        <!-- 各エラーメッセージをリストアイテムとして表示 -->
+        <li><%= message %></li>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h2>編集</h2>
+      <!-- @userの情報を用いてフォームを生成 -->
+      <%= form_for @user do |f| %>
+        <div class="form-group">
+          <label>ユーザー名</label>
+          <!-- ユーザー名の入力フィールド -->
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <!-- メールアドレスの入力フィールド -->
+          <%= f.text_field :email, class: "form-control" %>
+        </div>
+        <div>
+          <!-- フォームの送信ボタン -->
+          <%= f.submit class: "btn btn-success" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
