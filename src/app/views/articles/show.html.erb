@@ -1,0 +1,26 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <!-- 投稿記事の表示をカード形式で行います -->
+      <div class="card">
+        <div class="card-body">
+          <!-- 記事のタイトルを表示します -->
+          <h5 class="card-title"><%= @article.title %></h5>
+          <!-- 記事の本文を表示します。simple_formatメソッドは、改行を反映させます -->
+          <p class="card-text"><%= simple_format @article.body %></p>
+          <!-- 記事の更新日を表示します -->
+          <p class="card-text">
+            <small class="text-muted">更新日：<%= @article.updated_at.strftime("%Y-%m-%d") %></small>
+          </p>
+          <!-- ログインユーザーが記事の作成者である場合、編集と削除のリンクを表示します -->
+          <% if @article.user == current_user %>
+            <!--@articleは、articleコントローラのshowアクションに定義されている@article = Article.find(params[:id])の@article-->
+            <!--要は、特定の記事のidを渡すことで、どの記事を「編集」若しくは「削除」を実施するのかを特定させる。-->
+            <%= link_to '編集', edit_article_path(@article), class: "btn btn-success" %>
+            <%= link_to '削除', article_path(@article), method: :delete, class: "btn btn-danger" %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

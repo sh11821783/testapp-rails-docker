@@ -1,0 +1,14 @@
+<!-- '_errors' 部分テンプレートを呼び出して、@article オブジェクトに関連付けられたエラーメッセージを表示します。
+     この部分テンプレートを使うことで、エラーメッセージの表示に関するコードを再利用しています。 -->
+<%= render 'errors', article: @article %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h2>編集</h2>
+        <!-- '_form' 部分テンプレートを呼び出して、@article オブジェクトを渡します。
+           これにより、記事の編集フォームが表示されます。 -->
+        <%= render 'form', article: @article %>
+    </div>
+  </div>
+</div>

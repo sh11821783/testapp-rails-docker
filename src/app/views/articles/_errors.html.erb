@@ -1,0 +1,16 @@
+<!--articleオブジェクトにエラーがあるかどうかをチェックしています。-->
+<!--.any?メソッドは、articleオブジェクトにエラーがある場合に真を返します。-->
+<% if article.errors.any? %>
+  <!--articleオブジェクトにエラーがある場合に表示されるエラーメッセージを定義しています。-->
+  <div class="alert alert-danger" role="alert">
+    <h4 class="alert-heading"><%= pluralize(article.errors.count, "error") %></h4>
+    <p><%= pluralize(article.errors.count, "error") %> prohibited this object from being saved: not successfully</p>
+    <hr>
+    <p class="mb-0">
+      <!--article.errors.full_messages.eachを使用して、各エラーメッセージがリストとして表示されます。-->
+      <% article.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </p>
+  </div>
+<% end %>

@@ -11,7 +11,12 @@ Rails.application.routes.draw do
 
   # resource メソッドは、単一のリソースに対する CRUD 操作を扱う際に使用されます。
   # これは、特定の画面での新規作成、編集、表示、更新などの操作を可能にします。
-  # exceptは、指定したアクションは外すという意味。
+  # exceptは、指定したアクションは除外するという意味。
   resource :user, except: [:new, :create, :destroy]
+
+  # 'articles' リソースに対するルーティングを設定します。
+  # これにより、articlesコントローラーのindex、show、new、create、edit、update、destroyアクションに対応するURLが生成されます。
+  resources :articles
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

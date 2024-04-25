@@ -1,0 +1,23 @@
+<!--form_forヘルパーメソッドを使用して、articleオブジェクトに関連付けられたフォームを作成します。-->
+<!--fは、フォームの各フィールドを定義するために使用します。-->
+<%= form_for article do |f| %>
+  <div class="form-group">
+    <label>記事名</label>
+    <!--記事のタイトルを入力するためのフィールドを定義しています。-->
+    <!--text_fieldメソッドを使用してテキスト入力フィールドを生成します。-->
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <label>内容</label>
+    <!--記事の本文を入力するためのフィールドを定義しています。-->
+    <!--text_areaメソッドを使用してテキストエリアを生成します。-->
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div>
+    <!--フォームの送信ボタンを定義しています。-->
+    <!--submitメソッドを使用して送信ボタンを生成-->
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>

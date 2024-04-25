@@ -1,0 +1,32 @@
+<% if @article.errors.any? %>
+  <!-- エラーメッセージを表示するアラート -->
+  <div class="alert alert-danger" role="alert">
+    <!-- エラーの数を表示 -->
+    <h4 class="alert-heading"><%= pluralize(@article.errors.count, "error") %></h4>
+    <!-- エラーメッセージの説明 -->
+    <p><%= pluralize(@article.errors.count, "error") %> prohibited this object from being saved: not successfully</p>
+    <hr>
+    <p class="mb-0">
+      <!-- 全てのエラーメッセージを繰り返し表示 -->
+      <% @article.errors.full_messages.each do |message| %>
+        <!-- 各エラーメッセージをリストアイテムとして表示 -->
+        <li><%= message %></li>
+      <% end %>
+    </p>
+  </div>
+<% end %>
+
+<!--この行は、_errorsという部分テンプレートを呼び出しています。これは、@articleオブジェクトに関連付けられたエラーメッセージを表示するためのものです。-->
+<!--この部分テンプレートを使うことで、エラーメッセージの表示に関するコードを再利用しています。-->
+<%= render 'errors', article: @article %>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <h2>新規投稿</h2>
+        <!-- '_form' 部分テンプレートを呼び出して、@articleオブジェクトを渡します。
+           これにより、新規投稿フォームが表示されます。 -->
+        <%= render 'form', article: @article %>
+    </div>
+  </div>
+</div>

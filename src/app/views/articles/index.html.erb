@@ -1,0 +1,33 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-10 mx-auto">
+      <!-- 記事一覧を表示するためのテーブルを作成します。 -->
+      <table class="table table-hover">
+        <!-- テーブルのヘッダー部分を定義します。 -->
+        <thead class="thead-dark">
+          <tr>
+            <!-- 記事名の列を定義します。 -->
+            <th scope="col">記事名</th>
+            <!-- 投稿者の列を定義します。 -->
+            <th scope="col">投稿者</th>
+            <!-- 空の列を定義します。 -->
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- @articles コレクション内の各記事に対してループします。 -->
+          <% @articles.each do |article| %>
+            <tr>
+              <!-- 記事名をリンクとして表示し、記事の詳細ページにリンクします。 -->
+              <td><%= link_to article.title, article_path(article) %> </td>
+              <!-- 記事の投稿者の名前を表示します。 -->
+              <td><%= article.user.name %></td>
+              <!-- 空の列を追加します。 -->
+              <td></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
